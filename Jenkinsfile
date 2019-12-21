@@ -1,15 +1,33 @@
 pipeline {
-    agent any
-    stages {
-        stage('Build image') {
-            steps {
-                echo 'Starting to build docker image'
-
-                script {
-                    def customImage = docker.build("my-image:${env.BUILD_ID}")
-                    customImage.push()
-                }
-            }
+  environment {
+    registry = "registry.myhomehub.de/myhomehub-jenkins"
+    registryCredential = ''
+    dockerImage = ''
+  }
+  agent any
+  stages {
+   
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":latest"
         }
+      }
     }
-}
+
+  
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.myhomehub.de/myhomehub-api', '' ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:latest"
+      }
+    }
+  }
