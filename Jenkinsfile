@@ -10,7 +10,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":latest", "--no-cache"
+          dockerImage = docker.build registry + ":latest"
         }
       }
     }
