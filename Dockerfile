@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:latest
+FROM jenkins/jenkins:lts-jdk11
 # if we want to install via apt
 USER root
 RUN apt-get update && apt-get install -y curl sudo apt-transport-https \
@@ -14,6 +14,6 @@ RUN curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID"
      apt-get update && \
      apt-get -y install docker-ce
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
