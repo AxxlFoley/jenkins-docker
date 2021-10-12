@@ -28,6 +28,7 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:latest"
+        sh "docker rmi jenkins/jenkins:lts-jdk11"
       }
     }
   }
