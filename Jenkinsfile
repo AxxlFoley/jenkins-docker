@@ -10,6 +10,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
+          sh "docker pull jenkins/jenkins:latest"
           dockerImage = docker.build("registry.myhomehub.de/myhomehub-jenkins:latest")
         }
       }
@@ -28,7 +29,6 @@ pipeline {
     stage('Remove Unused docker image') {
       steps{
         sh "docker rmi $registry:latest"
-        sh "docker rmi jenkins/jenkins:lts-jdk11"
       }
     }
   }
