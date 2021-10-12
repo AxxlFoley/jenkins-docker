@@ -10,7 +10,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build("registry.myhomehub.de/myhomehub-jenkins:latest", "--pull")
+          dockerImage = docker.build("registry.myhomehub.de/myhomehub-jenkins:latest")
         }
       }
     }
