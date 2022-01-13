@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'https://registry.myhomehub.de/myhomehub-api', '' ) {
+          docker.withRegistry( 'https://registry.myhomehub.de', '' ) {
             dockerImage.push()
           }
         }
