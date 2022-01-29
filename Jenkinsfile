@@ -29,10 +29,10 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-    #  sh "docker rmi $registry:latest"
-      }
-    }
+ //   stage('Remove Unused docker image') {
+ //     steps{
+ //   sh "docker rmi $registry:latest"
+//      }
+//    }
   }
 }
